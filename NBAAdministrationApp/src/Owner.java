@@ -7,7 +7,7 @@ public class Owner extends Person {
 	}
 	
 	public void print() {
-		System.out.println("Player details: ");
+		System.out.println("Owner details: ");
 		super.print();
 	}
 

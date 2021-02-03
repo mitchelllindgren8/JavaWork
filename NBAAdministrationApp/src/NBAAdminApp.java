@@ -14,8 +14,12 @@ public class NBAAdminApp {
 		Scanner scan = new Scanner(System.in);
 		teamInput = scan.nextLine();
 
+		//team.populateTeams();
 		team.Team(teamInput);
 		
+		
+		//Player LJ = new Player ("Lebron", "James");
+		//LJ.print();
 	}
 
 }
