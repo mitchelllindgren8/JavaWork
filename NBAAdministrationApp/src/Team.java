@@ -136,16 +136,29 @@ public class Team {
 		System.out.print("\nPlease enter the player you want released: ");
 		String releasedPlayer = scan.nextLine();
 		
+
+		
 		switch(nbaTeam) {
 		 
 			case "Boston Celtics": 
-				
+				List<String> list = Arrays.asList(Celtics);
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here");
 				break;
 				
 			case "Brooklyn Nets":
 				break;
 				
-			case "Golden State Warriors":
+			case "Chicago Bulls":
+				break;
+				
+			case "The Los Angeles Lakers":
+				break;
+				
+			case "The Golden State Warriors":
+				break;
+				
+			case "The Free Agents":
 				break;
 			
 			//case //
@@ -236,6 +249,7 @@ public class Team {
 				
 			} else if(ownerInput == 4) {
 				//call release player
+				releasePlayer();
 			
 			} else if(ownerInput == 5) {
 				
