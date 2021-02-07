@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Team {
 	
-	protected String nbaTeam = "team";
+	protected ArrayList<Object> leagueList;
 	protected String[] Celtics = new String[5];
 	protected String[] Lakers = new String[5];
 	protected String[] Nets = new String[5];
@@ -21,31 +21,21 @@ public class Team {
 	public String warriorsT = "Golden State Warriors";
 	public String lakersT = "Los Angeles Lakers";
 	public String freeAgentsT = "Free Agents";
-	
-	//public ArrayList leagueList = new ArrayList<>();
+	public String nbaTeam = "team";
 	
 	//objects
 	public Person person;
 	private League teamLeague;
-
-
+	
 	public void Team(String teamInput) {
 		
 		boolean foundd = false;
 		Scanner in = new Scanner(System.in);
 		this.nbaTeam = teamInput;
 		
-		//populateTeams();
-		
 		teamLeague = new League(nbaTeam);
-		
 		populateTeams();
-		
 		foundd = teamLeague.checkLeague();
-		
-		//there is an error in the checking of the leaguelist and with the userinput
-		
-		System.out.println(foundd + " team-foundd after object call");
 		
 		if(foundd == true) {	//note to self, when comparing boolean use 2 "=="
 			printMenu();
@@ -55,15 +45,6 @@ public class Team {
 			nbaTeam = in.nextLine();
 			Team(nbaTeam);
 		}
-		
-		
-		
-		
-		
-		
-
-			
-		//for(List l : nbaTeam)
 	}
 	
 	//view a team
@@ -141,21 +122,41 @@ public class Team {
 		}
 	}
 	
-	//print entire league
-	
-	//call view player
-	
 	
 	//view a player
+
 	
 	//add a player
 	
 	//release a player
+	public void releasePlayer() {
+		
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.print("\nPlease enter the player you want released: ");
+		String releasedPlayer = scan.nextLine();
+		
+		switch(nbaTeam) {
+		 
+			case "Boston Celtics": 
+				
+				break;
+				
+			case "Brooklyn Nets":
+				break;
+				
+			case "Golden State Warriors":
+				break;
+			
+			//case //
+		}
+		
+	}
 	
 	//populate teams
 	public void populateTeams() {
 		
-		ArrayList<Object> leagueList = new ArrayList<>();	//temp
+		leagueList = new ArrayList<>();	
 		
 		Bulls[0] = "Michael Jordan";
 		Bulls[1] = "Scottie Pippen";
@@ -202,16 +203,16 @@ public class Team {
 		
 		teamLeague.populateLeague();
 		
+		teamLeague.populatePlayerList(Bulls);
+		teamLeague.populatePlayerList(Celtics);
+		teamLeague.populatePlayerList(Lakers);
+		teamLeague.populatePlayerList(Nets);
+		teamLeague.populatePlayerList(Warriors);
+		teamLeague.populatePlayerList(FreeAgents);
+		
 		//connect the names here with Person
 	}
 	
-	public void printLeague() {
-		System.out.println("*** THE NBA League **\n");
-
-		//for(String fruit:leagueList)  
-			  //System.out.println(fruit + "\n"); 
-		System.out.println("**Print League**");
-	}
 	
 	public void printMenu() {
 		
@@ -245,7 +246,7 @@ public class Team {
 				System.out.print("Error: Please enter only 1, 2, or 3: ");
 				ownerInput = scan.nextInt();
 			}
-		}
+		}//ends while
 	}
 
 }//ends main team class
