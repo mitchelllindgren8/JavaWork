@@ -136,29 +136,52 @@ public class Team {
 		System.out.print("\nPlease enter the player you want released: ");
 		String releasedPlayer = scan.nextLine();
 		
-
+		List<String> list;
 		
 		switch(nbaTeam) {
 		 
 			case "Boston Celtics": 
-				List<String> list = Arrays.asList(Celtics);
+				list = Arrays.asList(Celtics);
 				if(list.contains(releasedPlayer))
-					System.out.println("We in here");
+					System.out.println("We in here C");
+					
+				//remove player from list
+				//add to FA list, make FA list bigger to hold more players
 				break;
 				
 			case "Brooklyn Nets":
+				list = Arrays.asList(Nets);
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here N");
 				break;
 				
 			case "Chicago Bulls":
+				list = Arrays.asList(Bulls);
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here B");
 				break;
 				
-			case "The Los Angeles Lakers":
+			case "Los Angeles Lakers":
+				list = Arrays.asList(Lakers);
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here L");
 				break;
 				
-			case "The Golden State Warriors":
+			case "Golden State Warriors":
+				list = Arrays.asList(Warriors);
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here W");
 				break;
 				
-			case "The Free Agents":
+			case "Free Agents":
+				list = Arrays.asList(FreeAgents);
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here FA");
+				break;
+				
+			default:
+				System.out.println("[Error] Please enter a correct name.");
+				releasePlayer();
 				break;
 			
 			//case //
