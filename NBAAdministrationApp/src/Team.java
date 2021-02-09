@@ -55,7 +55,7 @@ public class Team {
 		switch(nbaTeam) {
 			case "Boston Celtics": 
 				System.out.println("\n** The " + nbaTeam + " starting 5 **");
-				for(int i= 0; i<5; i++) 
+				for(int i= 0; i<Celtics.length; i++) 
 					System.out.println("\t" + Celtics[i]);
 				System.out.println("***************************************\n");
 				
@@ -65,7 +65,7 @@ public class Team {
 				
 			case "Brooklyn Nets":
 				System.out.println("\n** The " + nbaTeam + " starting 5 **");
-				for(int i= 0; i<5; i++) 
+				for(int i= 0; i<Nets.length; i++) 
 					System.out.println("\t" + Nets[i]);
 				System.out.println("***************************************\n");
 				
@@ -75,7 +75,7 @@ public class Team {
 				
 			case "Chicago Bulls":
 				System.out.println("\n** The " + nbaTeam + " starting 5 **");
-				for(int i= 0; i<5; i++) 
+				for(int i= 0; i<Bulls.length; i++) 
 					System.out.println("\t" + Bulls[i]);
 				System.out.println("***************************************\n");
 				
@@ -85,7 +85,7 @@ public class Team {
 				
 			case "Golden State Warriors":
 				System.out.println("\n** The " + nbaTeam + " starting 5 **");
-				for(int i= 0; i<5; i++) 
+				for(int i= 0; i<Warriors.length; i++) 
 					System.out.println("\n\t" + Warriors[i]);
 				System.out.println("***************************************\n");
 				
@@ -95,7 +95,7 @@ public class Team {
 				
 			case "Los Angeles Lakers":
 				System.out.println("\n** The " + nbaTeam + " starting 5 **");
-				for(int i= 0; i<5; i++) 
+				for(int i= 0; i<Lakers.length; i++) 
 					System.out.println("\t" + Lakers[i]);
 				System.out.println("***************************************\n");
 				
@@ -142,9 +142,25 @@ public class Team {
 		 
 			case "Boston Celtics": 
 				list = Arrays.asList(Celtics);
+				String[] tempCeltics = new String[5];
+				
 				if(list.contains(releasedPlayer))
 					System.out.println("We in here C");
+				
+				
+				for(int i=0; i<Celtics.length; i++) {
+					if(Celtics[i].contentEquals(releasedPlayer)){
+						System.out.println("We in remove player");
+						Celtics = removeTheElement(Celtics, releasedPlayer);
+						
+					}
+					else {
+						System.out.println("No player match");
+					}
+				}
 					
+				System.out.println(Arrays.toString(Celtics));
+				
 				//remove player from list
 				//add to FA list, make FA list bigger to hold more players
 				break;
@@ -187,6 +203,29 @@ public class Team {
 			//case //
 		}
 		
+	}
+	
+	
+	//this code so far works with an int index,
+	// it needs to be a String that gets passed into the method
+	public String[] removeTheElement(String[] arr, String name) {
+		
+		//copy code
+		if(arr == null) {
+			return arr;
+		}
+		
+		String[] tempArray = new String[arr.length-1];
+		
+		for(int i=0, k=0; i < arr.length; i++) {
+			
+			if(arr[i].contains(name))
+				continue;	//statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+			
+			tempArray[k++] = arr[i];
+		}
+
+		return tempArray;
 	}
 	
 	//populate teams
@@ -232,12 +271,19 @@ public class Team {
 		
 		leagueList.add(bullsT);
 		leagueList.add(celticsT);
-		leagueList.add(freeAgentsT);
 		leagueList.add(lakersT);
 		leagueList.add(netsT);
 		leagueList.add(warriorsT);
+		leagueList.add(freeAgentsT);
 		
-		teamLeague.populateLeague();
+		teamLeague.populateLeague();		
+		
+		populateLeague();	//locally
+		
+		//connect the names here with Person
+	}
+	
+	public void populateLeague() {
 		
 		teamLeague.populatePlayerList(Bulls);
 		teamLeague.populatePlayerList(Celtics);
@@ -245,8 +291,6 @@ public class Team {
 		teamLeague.populatePlayerList(Nets);
 		teamLeague.populatePlayerList(Warriors);
 		teamLeague.populatePlayerList(FreeAgents);
-		
-		//connect the names here with Person
 	}
 	
 	
@@ -262,9 +306,11 @@ public class Team {
 			int ownerInput = scan.nextInt();
 			
 			if(ownerInput == 1) {
+				populateLeague();
 				viewTeam();
 				
 			} else if(ownerInput == 2) {
+				populateLeague();	//resets the league rosters
 				teamLeague.printLeague();
 				
 			} else if(ownerInput == 3) {
@@ -272,6 +318,7 @@ public class Team {
 				
 			} else if(ownerInput == 4) {
 				//call release player
+				populateLeague();
 				releasePlayer();
 			
 			} else if(ownerInput == 5) {

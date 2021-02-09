@@ -22,11 +22,10 @@ public class League {
 		
 		newteamList.add(tm1.bullsT);
 		newteamList.add(tm1.celticsT);
-		newteamList.add(tm1.freeAgentsT);
 		newteamList.add(tm1.lakersT);
 		newteamList.add(tm1.netsT);
 		newteamList.add(tm1.warriorsT);
-		 
+		newteamList.add(tm1.freeAgentsT);
 	}
 	
 	public void populatePlayerList(String[] playerRoster) {
@@ -54,6 +53,7 @@ public class League {
 				
 		 int i = 0;
 		 int j = 0;
+		 //tm1.populateLeague();
 		 
 		 while (i < 6) {
 			 
