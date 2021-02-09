@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class NBAAdminApp {
 	
 	public static String teamInput = "";
+	public static String Owner = "";
 	public static Team team = new Team();
 	
 	
@@ -13,6 +14,10 @@ public class NBAAdminApp {
 		
 		Scanner scan = new Scanner(System.in);
 		teamInput = scan.nextLine();
+		
+		System.out.print("Please enter your name as Owner: \n>>>");
+		Owner = scan.nextLine();
+		
 
 		//team.populateTeams();
 		team.Team(teamInput);
