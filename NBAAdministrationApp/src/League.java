@@ -10,6 +10,8 @@ public class League {
 	private String[] tempTeam = new String[6];	//holds the 5 players into a temp array
 	private String fullteamName;	//"Los Angelos Lakers" not just "Lakers"
 	
+	private int itr = 0;
+	
 	public Team tm1 = new Team();
 	
 	public League(String teamNamee) {
@@ -32,10 +34,17 @@ public class League {
 		
 		this.tempTeam = playerRoster;
 		
+		/*
 		  //add the ArrayList of players to a List
 		  for(String text: tempTeam){
 			  playerList.add(text);
 		  }
+		 
+		  Team[] leagueArray = {};
+		  
+		  //leagueArray[itr] = tempTeam
+		 */ 
+		  
 		
 	}
 	
@@ -55,6 +64,7 @@ public class League {
 		 int j = 0;
 		 //tm1.populateLeague();
 		 
+		 /*
 		 while (i < 6) {
 			 
 			 System.out.println("** The " + newteamList.get(i) + " **");
@@ -67,6 +77,19 @@ public class League {
 			 System.out.println("\n");
 			 i++;
 		 }
+		 */
+		 
+		//other method of printing
+		String[] tempT;
+
+		for(int n=0; n <tm1.LEAGUE.length; n++) {
+			
+			tempT = new String[tm1.LEAGUE[n].length];
+			
+			System.out.println(tempT.length);
+			tempT.equals(tm1.LEAGUE[n]);
+			System.out.println(Arrays.toString(tempT));	//keep it tempT in order to prove LEAGUE holds each teamArray
+		} 
 	}
 
 }

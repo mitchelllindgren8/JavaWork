@@ -14,6 +14,8 @@ public class Team {
 	protected String[] Warriors = new String[5];
 	protected String[] FreeAgents = new String[5];
 	
+	protected String[][] LEAGUE = new String[][] {Bulls, Celtics, Lakers, Nets, Warriors, FreeAgents};
+	
 	//these are the full professional team names
 	public String celticsT= "Boston Celtics";
 	public String netsT = "Brooklyn Nets";
@@ -127,6 +129,24 @@ public class Team {
 
 	
 	//add a player
+	public void signPlayer() {
+		
+		
+		System.out.println("\n*** This is test code for printing the LeagueArray ***");
+		//List<Array> list = new List<Array>();
+		
+		String[] tempT;
+		
+		for(int n=0; n <LEAGUE.length; n++) {
+			
+			tempT = new String[LEAGUE[n].length];
+			tempT = LEAGUE[n];
+			System.out.println(Arrays.toString(tempT));	//keep it tempT in order to prove LEAGUE holds each teamArray
+		}
+		
+
+		System.out.println("\n*** This is test code for printing the LeagueArray ***\n");
+	}
 	
 	//release a player
 	public void releasePlayer() {
@@ -250,6 +270,7 @@ public class Team {
 		FreeAgents[2] = "Stone-Cold-Steve Austin";
 		FreeAgents[3] = "Rickyyy Robby";
 		FreeAgents[4] = "The Truth";
+		//FreeAgents[5] = "The Truth";
 
 		Lakers[0] = "Lebron James";		
 		Lakers[1] = "Kobe Bryant";		
@@ -314,7 +335,7 @@ public class Team {
 				teamLeague.printLeague();
 				
 			} else if(ownerInput == 3) {
-				//call sign player
+				signPlayer();
 				
 			} else if(ownerInput == 4) {
 				//call release player
