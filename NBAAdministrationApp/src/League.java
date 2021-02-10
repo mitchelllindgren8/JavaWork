@@ -34,7 +34,7 @@ public class League {
 		
 		this.tempTeam = playerRoster;
 		
-		/*
+		//this code can be deleted once the print is finalized 
 		  //add the ArrayList of players to a List
 		  for(String text: tempTeam){
 			  playerList.add(text);
@@ -43,7 +43,7 @@ public class League {
 		  Team[] leagueArray = {};
 		  
 		  //leagueArray[itr] = tempTeam
-		 */ 
+		 
 		  
 		
 	}
