@@ -1,35 +1,34 @@
 
 public class Player extends Person {
 	
-	private int jerseyNum;
+	private String jerseyNum;
+	private String height;
+	private String weight;
 	private String position;
-	private String team;	//team or FA
 	
 	//private String team;
 	
-	public Player(String firstName, String lastName) {
+	public Player(String fullName, String team, String number) {
 		
 		//the super calls the parent class's methods/constructors and then sets the variables to global variables in Person.
-		super(firstName, lastName);
+		super(fullName, team);
+		this.jerseyNum = number;
 		
-		System.out.println("WE MADE IT INTO PLAYER-constructor");
-		print();
+
 		
-		//super(firstName, lastName);
+		//print();
 	}
 	
-	//set players number
 	
 	//set players pos
+	//set players height
+	//set players weight
 	
-	//set players jerseyNum
-	
-	//set players team
 	
 	public void print() {
-		System.out.println("WE MADE IT INTO PLAYER-print");
-		System.out.println("Player details: ");
-		super.print();
+		
+		System.out.print("Player details: \n\t"+" #" +jerseyNum + " ");
+		super.print();	//calls parent class print
 	}
 
 }

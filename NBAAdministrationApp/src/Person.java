@@ -1,22 +1,19 @@
 
 public class Person {
 	
-	private String firstNamee;
-	private String lastNamee;
+	//these were static before
+	public static String fullNameP;
+	public static String teamName;
+	//private String lastNamee;
 	//public Player player;
 
-	public Person(String firstName, String lastName) {
-		this.firstNamee = firstName;
-		this.lastNamee = lastName;
-		
-		//player = new Player(firstName, firstName);
-		
-		//print();
-		
+	public Person(String fullName, String team) {
+		fullNameP = fullName;
+		teamName = team;
 		
 	}
 	
 	public void print() {
-		System.out.println("\t" + firstNamee + " " + lastNamee);
+		System.out.print(fullNameP + " " + teamName + "\n");
 	}
 }
