@@ -5,10 +5,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class League2 {
-	
-    
 	
 	public List<String> playerList2 = new ArrayList();	//list of list of player
 	
@@ -37,13 +37,14 @@ public class League2 {
 	private String freeAgentsT = "Free Agents";
 	//**test code **
 	
-	public String teamN = "";
+	public String nbaTeam = "";
 
 	
 	public League2() throws FileNotFoundException {
 		
 		createLeague();
 	}
+	
 	
 	//reads DB file of players and sets their attributes
 	private void createLeague() throws FileNotFoundException {
@@ -116,7 +117,7 @@ public class League2 {
 			teamName = in.nextLine();
 
 		}
-		teamN = teamName;	//this acts as a "setTeam()"
+		nbaTeam = teamName;	//this acts as a "setTeam()"
 		found = true;
 		
 		return found;
@@ -124,7 +125,7 @@ public class League2 {
 	
 	
 	public String getTeam() {
-		return teamN;
+		return nbaTeam;
 	}
 
 	
@@ -133,27 +134,216 @@ public class League2 {
 	public void populateLeague() {
 		
 		proteamNames2[0] = celticsT;
-		proteamNames2[1] = "Brooklyn Nets";
-		proteamNames2[2] = "Chicago Bulls";
-		proteamNames2[3] = "Golden State Warriors";
-		proteamNames2[4] = "Los Angeles Lakers";
-		proteamNames2[5] = "Free Agents";
-		
-		for(int i=0; i<proteamNames2.length; i++) {
-			System.out.println(proteamNames2[i].toString());
-		}
+		proteamNames2[1] = netsT;
+		proteamNames2[2] = bullsT;
+		proteamNames2[3] = warriorsT;
+		proteamNames2[4] = lakersT;
+		proteamNames2[5] = freeAgentsT;
 	
 	}
 	
-	//basic print of each player AFTER they have all been added to the list
-	public void print() {
-		
-		
-		
-		for(String text: playerList2){
-			System.out.println(text);
+	//view a team
+		public void viewTeam() {
+			
+			Scanner scann = new Scanner(System.in);
+			
+			switch(nbaTeam) {
+				case "Boston Celtics": 
+					System.out.println("\n** The " + nbaTeam + " starting 5 **");
+					for(int i= 0; i<Celtics.length; i++) 
+						System.out.println("\t" + Celtics[i].getPlayer());
+					System.out.println("***************************************\n");
+					
+					//print entire league
+					//call view player
+					break;
+					
+				case "Brooklyn Nets":
+					System.out.println("\n** The " + nbaTeam + " starting 5 **");
+					for(int i= 0; i<Nets.length; i++) 
+						System.out.println("\t" + Nets[i].getPlayer());
+					System.out.println("***************************************\n");
+					
+					//print entire league
+					//call view player
+					break;
+					
+				case "Chicago Bulls":
+					System.out.println("\n** The " + nbaTeam + " starting 5 **");
+					for(int i= 0; i<Bulls.length; i++) 
+						System.out.println("\t" + Bulls[i].getPlayer());
+					System.out.println("***************************************\n");
+					
+					//print entire league
+					//call view player
+					break;
+					
+				case "Golden State Warriors":
+					System.out.println("\n** The " + nbaTeam + " starting 5 **");
+					for(int i= 0; i<Warriors.length; i++) 
+						System.out.println("\t" + Warriors[i].getPlayer());
+					System.out.println("***************************************\n");
+					
+					//print entire league
+					//call view player
+					break;
+					
+				case "Los Angeles Lakers":
+					System.out.println("\n** The " + nbaTeam + " starting 5 **");
+					for(int i= 0; i<Lakers.length; i++) 
+						System.out.println("\t" + Lakers[i].getPlayer());
+					System.out.println("***************************************\n");
+					
+					//print entire league
+					//call view player
+					break;
+				
+				default:
+					break;	
+			}
 		}
 		
+		//view a player
+
+		
+	//add a player
+	public void signPlayer() throws FileNotFoundException {
+		
+		System.out.println("\n*** No code yet***");
+
+	}
+	
+	//release a player
+	public void releasePlayer() {
+		
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.print("\nPlease enter the player you want released: ");
+		String releasedPlayer = scan.nextLine();
+		
+		List<Player> list;
+		
+		switch(nbaTeam) {
+		 
+			case "Boston Celtics": 
+				list = Arrays.asList(Celtics);
+				String[] tempCeltics = new String[5];
+				
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here C");
+				
+				//checks if player exists in team, then removes
+				for(int i=0; i<Celtics.length; i++) {
+					
+					
+					if(Celtics[i].equals(releasedPlayer)){
+					//if(Celtics[i].contains(releasedPlayer)){
+						System.out.println("We in remove player");
+						Celtics = removeTheElement(Celtics, releasedPlayer);
+						
+					}
+					else {
+						System.out.println("No player match");
+					}
+				}
+					
+				System.out.println(Arrays.toString(Celtics) + " INSIDE RELEASE: CELTICS GAINED TEMPT");
+				
+				//remove player from list
+				//add to FA list, make FA list bigger to hold more players
+				break;
+				
+			case "Brooklyn Nets":
+				list = Arrays.asList(Nets);
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here N");
+				break;
+				
+			case "Chicago Bulls":
+				list = Arrays.asList(Bulls);
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here B");
+				break;
+				
+			case "Los Angeles Lakers":
+				list = Arrays.asList(Lakers);
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here L");
+				break;
+				
+			case "Golden State Warriors":
+				list = Arrays.asList(Warriors);
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here W");
+				break;
+				
+			case "Free Agents":
+				list = Arrays.asList(FreeAgents);
+				if(list.contains(releasedPlayer))
+					System.out.println("We in here FA");
+				break;
+				
+			default:
+				System.out.println("[Error] Please enter a correct name.");
+				releasePlayer();
+				break;
+			
+			//case //
+		}
+		
+	}
+	
+	
+	//this code so far works with an int index,
+	// it needs to be a String that gets passed into the method
+	public Player[] removeTheElement(Player[] celtics2, String name) {
+		
+		System.out.println("REMOVE currently only works for Celtics, double check\n");
+		
+		//copy code
+		if(celtics2 == null) {
+			return celtics2;
+		}
+		
+		Player[] tempArray = new Player[celtics2.length-1];
+		
+		for(int i=0, k=0; i < celtics2.length; i++) {
+			
+			if(celtics2[i].equals(name))
+				continue;	//statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+			
+			tempArray[k++] = celtics2[i];
+		}
+
+		Celtics = tempArray;
+		for(int j=0;j<Celtics.length;j++) 
+			System.out.println(Celtics[j] + " TEST --------->");
+		System.out.println(Celtics);
+		return tempArray;
+	}
+	
+	//basic print of each player AFTER they have all been added to the list
+	public void print() throws FileNotFoundException {
+		
+		Date currentDate = new Date();
+		SimpleDateFormat year = new SimpleDateFormat("yyyy");
+
+		String tmpTeam = "";
+		tmpTeam = nbaTeam;	//sets the correct user's nbaTeam to a tempVal
+		
+		System.out.println("\n~~~ Welcome to the " + year.format(currentDate) + " NBA League! ~~~");
+		
+		for(int i=0; i<proteamNames2.length; i++) {
+			nbaTeam = proteamNames2[i];
+			viewTeam();
+			//this is wrong, needs to be individually teams, not the playerlist, this also caused an error OR popleague did 
+			//for(String text: playerList2)
+				//System.out.println(text);
+		}	
+		nbaTeam = tmpTeam;
+		
+		System.out.println("A Player to view code(will be added later).....\n");
+		//if you wanted to add ViewPlayer, this way you can see their stats
 	}
 	
 	//based on past code this should print each player
@@ -182,5 +372,6 @@ public class League2 {
 		
 		System.out.println("\n*** This is test code for printing the LeagueArray ***\n");
 	}
+	
 
 }
