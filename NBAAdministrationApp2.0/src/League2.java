@@ -15,8 +15,6 @@ public class League2 {
 	public static List<Player> BullsList = new ArrayList<Player>();
 	public List<String> proteamNames = new ArrayList();	//list of team names in League
 	
-
-	
 	public Player[] PLAYERS = new Player[31];	//currently there are 31 players on the file, find a way to not HARDCODE
 	protected Player[] Celtics = new Player[5];
 	protected Player[] Lakers = new Player[5];
@@ -26,7 +24,6 @@ public class League2 {
 	protected Player[] FreeAgents = new Player[6];
 	
 	
-	//**test code **
 	public String[] proteamNames2 = new String[6];
 	//these are the full professional team names
 	private String celticsT= "Boston Celtics";
@@ -203,7 +200,12 @@ public class League2 {
 			}
 		}
 		
-		//view a player
+	//view a player
+	public void viewPlayer() {
+		
+		System.out.println("A Player to view code(will be added later).....\n");
+
+	}
 
 		
 	//add a player
@@ -336,14 +338,10 @@ public class League2 {
 		for(int i=0; i<proteamNames2.length; i++) {
 			nbaTeam = proteamNames2[i];
 			viewTeam();
-			//this is wrong, needs to be individually teams, not the playerlist, this also caused an error OR popleague did 
-			//for(String text: playerList2)
-				//System.out.println(text);
 		}	
-		nbaTeam = tmpTeam;
 		
-		System.out.println("A Player to view code(will be added later).....\n");
-		//if you wanted to add ViewPlayer, this way you can see their stats
+		nbaTeam = tmpTeam;
+		viewPlayer();
 	}
 	
 	//based on past code this should print each player

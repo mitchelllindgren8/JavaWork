@@ -7,52 +7,32 @@ import java.io.*;
 
 public class Team {
 	
-	protected ArrayList<Object> leagueList;
-	protected String[] Celtics = new String[5];
-	protected String[] Lakers = new String[5];
-	protected String[] Nets = new String[5];
-	protected String[] Bulls = new String[5];
-	protected String[] Warriors = new String[5];
-	protected String[] FreeAgents = new String[6];
-	
-	/*
-	public Player[] PLAYERS = new Player[31];	//currently there are 31 players on the file, find a way to not HARDCODE
-	private Player[] Celtics = new Player[5];
-	private Player[] Lakers = new Player[5];
-	private Player[] Nets = new Player[5];
-	private Player[] Bulls = new Player[5];
-	private Player[] Warriors = new Player[5];
-	private Player[] FreeAgents = new Player[6];
-	*/
-	
-	protected String[][] LEAGUE = new String[][] {Bulls, Celtics, Lakers, Nets, Warriors, FreeAgents};
-	
-	//these are the full professional team names
-	public String celticsT= "Boston Celtics";
-	public String netsT = "Brooklyn Nets";
-	public String bullsT = "Chicago Bulls";
-	public String warriorsT = "Golden State Warriors";
-	public String lakersT = "Los Angeles Lakers";
-	public String freeAgentsT = "Free Agents";
+	//REMINDER (static): indicates that the particular member belongs to a type itself, rather than to an instance of that type. (only one instance of that static member is created which is shared across all instances of the class)
 	private static String nbaTeam;
 	private int iterator = 0;
-	//indicates that the particular member belongs to a type itself, rather than to an instance of that type.
-	//(only one instance of that static member is created which is shared across all instances of the class)
-	
+
 	//objects
-	public Person person;
 	public League2 league = new League2();
 	
-	public Team(String teamm) throws FileNotFoundException {
+	//Team Constructor
+	public Team(String team) throws FileNotFoundException {
 		
-		boolean found = league.checkLeague(teamm);
-		nbaTeam = teamm;	//this acts as a setTeam() method
+		boolean found = league.checkLeague(team);
+		setTeam();
 
 		while(found == true || iterator == 1) 	//note to self, when comparing boolean use 2 "=="
 			printMenu();
 		
 	}
 	
+	//sets this Team.nbaTeam to the correct League.nbaTeam
+	public String setTeam() {
+		
+		nbaTeam = league.nbaTeam;
+		return nbaTeam;
+	}
+	
+	//main print menu
 	public void printMenu() throws FileNotFoundException {
 		
 		Scanner scan = new Scanner(System.in);
@@ -89,25 +69,6 @@ public class Team {
 				ownerInput = scan.nextInt();
 			}
 		}//ends while
-	}
-	
-	
-	
-	
-	
-	
-	
-	//populate teams
-	public void populateTeams() {
-		
-		//creates a List of the 6 teams 
-		leagueList = new ArrayList<>();	
-		leagueList.add(bullsT);
-		leagueList.add(celticsT);
-		leagueList.add(lakersT);
-		leagueList.add(netsT);
-		leagueList.add(warriorsT);
-		leagueList.add(freeAgentsT);	
 	}
 	
 
