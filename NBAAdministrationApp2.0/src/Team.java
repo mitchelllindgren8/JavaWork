@@ -20,7 +20,7 @@ public class Team {
 		boolean found = league.checkLeague(team);
 		setTeam();
 
-		while(found == true || iterator == 1) 	//note to self, when comparing boolean use 2 "=="
+		while(found == true && iterator == 0) 	//note to self, when comparing boolean use 2 "=="
 			printMenu();
 		
 	}
@@ -48,7 +48,6 @@ public class Team {
 				
 			} else if(ownerInput == 2) {	//2. View League
 				//resets the league rosters
-				//League2 tm2 = new League2();   **Delete**
 				league.print();
 				
 			} else if(ownerInput == 3) {	//3. Sign Player

@@ -150,9 +150,6 @@ public class League2 {
 					for(int i= 0; i<Celtics.length; i++) 
 						System.out.println("\t" + Celtics[i].getPlayer());
 					System.out.println("***************************************\n");
-					
-					//print entire league
-					//call view player
 					break;
 					
 				case "Brooklyn Nets":
@@ -160,9 +157,6 @@ public class League2 {
 					for(int i= 0; i<Nets.length; i++) 
 						System.out.println("\t" + Nets[i].getPlayer());
 					System.out.println("***************************************\n");
-					
-					//print entire league
-					//call view player
 					break;
 					
 				case "Chicago Bulls":
@@ -170,9 +164,6 @@ public class League2 {
 					for(int i= 0; i<Bulls.length; i++) 
 						System.out.println("\t" + Bulls[i].getPlayer());
 					System.out.println("***************************************\n");
-					
-					//print entire league
-					//call view player
 					break;
 					
 				case "Golden State Warriors":
@@ -180,9 +171,6 @@ public class League2 {
 					for(int i= 0; i<Warriors.length; i++) 
 						System.out.println("\t" + Warriors[i].getPlayer());
 					System.out.println("***************************************\n");
-					
-					//print entire league
-					//call view player
 					break;
 					
 				case "Los Angeles Lakers":
@@ -190,9 +178,6 @@ public class League2 {
 					for(int i= 0; i<Lakers.length; i++) 
 						System.out.println("\t" + Lakers[i].getPlayer());
 					System.out.println("***************************************\n");
-					
-					//print entire league
-					//call view player
 					break;
 				
 				default:
@@ -220,108 +205,101 @@ public class League2 {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.print("\nPlease enter the player you want released: ");
+		System.out.print("\nPlease enter the player you want released(add code for error: player not on team): ");
 		String releasedPlayer = scan.nextLine();
 		
 		List<Player> list;
+		List<String> list2 = null;
 		
 		switch(nbaTeam) {
 		 
 			case "Boston Celtics": 
+				
 				list = Arrays.asList(Celtics);
-				String[] tempCeltics = new String[5];
-				
-				if(list.contains(releasedPlayer))
-					System.out.println("We in here C");
-				
-				//checks if player exists in team, then removes
-				for(int i=0; i<Celtics.length; i++) {
-					
-					
-					if(Celtics[i].equals(releasedPlayer)){
-					//if(Celtics[i].contains(releasedPlayer)){
-						System.out.println("We in remove player");
+				for(Player temp : list) {
+					if(temp.getPlayer().equals(releasedPlayer)) 
 						Celtics = removeTheElement(Celtics, releasedPlayer);
-						
-					}
-					else {
-						System.out.println("No player match");
-					}
 				}
-					
-				System.out.println(Arrays.toString(Celtics) + " INSIDE RELEASE: CELTICS GAINED TEMPT");
 				
 				//remove player from list
 				//add to FA list, make FA list bigger to hold more players
 				break;
 				
 			case "Brooklyn Nets":
+				
 				list = Arrays.asList(Nets);
-				if(list.contains(releasedPlayer))
-					System.out.println("We in here N");
+				for(Player temp : list) {
+					if(temp.getPlayer().equals(releasedPlayer)) 
+						Nets = removeTheElement(Nets, releasedPlayer);
+				}
 				break;
 				
 			case "Chicago Bulls":
+				
 				list = Arrays.asList(Bulls);
-				if(list.contains(releasedPlayer))
-					System.out.println("We in here B");
+				for(Player temp : list) {
+					if(temp.getPlayer().equals(releasedPlayer)) 
+						Bulls = removeTheElement(Bulls, releasedPlayer);
+				}
 				break;
 				
 			case "Los Angeles Lakers":
+				
 				list = Arrays.asList(Lakers);
-				if(list.contains(releasedPlayer))
-					System.out.println("We in here L");
+				for(Player temp : list) {
+					if(temp.getPlayer().equals(releasedPlayer)) 
+						Lakers = removeTheElement(Lakers, releasedPlayer);
+				}
 				break;
 				
 			case "Golden State Warriors":
+				
 				list = Arrays.asList(Warriors);
-				if(list.contains(releasedPlayer))
-					System.out.println("We in here W");
+				for(Player temp : list) {
+					if(temp.getPlayer().equals(releasedPlayer)) 
+						Warriors = removeTheElement(Warriors, releasedPlayer);
+				}
 				break;
 				
+			//technically FA shouldnt be allowed to remove players
 			case "Free Agents":
 				list = Arrays.asList(FreeAgents);
-				if(list.contains(releasedPlayer))
-					System.out.println("We in here FA");
+				
+				for(Player temp : list) {
+					if(temp.getPlayer().equals(releasedPlayer)) 
+						FreeAgents = removeTheElement(FreeAgents, releasedPlayer);
+				}
 				break;
 				
+			//this is wrong, good logic but apply to ERROR when asking for player
 			default:
 				System.out.println("[Error] Please enter a correct name.");
 				releasePlayer();
 				break;
-			
-			//case //
-		}
-		
+		}//ends switch
 	}
 	
 	
 	//this code so far works with an int index,
 	// it needs to be a String that gets passed into the method
-	public Player[] removeTheElement(Player[] celtics2, String name) {
+	public Player[] removeTheElement(Player[] team, String name) {
 		
-		System.out.println("REMOVE currently only works for Celtics, double check\n");
+		Player[] tempArray = new Player[team.length-1];
 		
 		//copy code
-		if(celtics2 == null) {
-			return celtics2;
-		}
+		if(team == null) 
+			return team;
 		
-		Player[] tempArray = new Player[celtics2.length-1];
-		
-		for(int i=0, k=0; i < celtics2.length; i++) {
+		for(int i=0, k=0; i < team.length; i++) {
 			
-			if(celtics2[i].equals(name))
+			if(team[i].getPlayer().equals(name))
 				continue;	//statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
 			
-			tempArray[k++] = celtics2[i];
+			tempArray[k++] = team[i];
 		}
 
-		Celtics = tempArray;
-		for(int j=0;j<Celtics.length;j++) 
-			System.out.println(Celtics[j] + " TEST --------->");
-		System.out.println(Celtics);
-		return tempArray;
+		team = tempArray;
+		return team;
 	}
 	
 	//basic print of each player AFTER they have all been added to the list
