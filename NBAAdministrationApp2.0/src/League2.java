@@ -23,7 +23,6 @@ public class League2 {
 	protected Player[] Warriors = new Player[5];
 	protected Player[] FreeAgents = new Player[6];
 	
-	
 	public String[] proteamNames2 = new String[6];
 	//these are the full professional team names
 	private String celticsT= "Boston Celtics";
@@ -32,14 +31,15 @@ public class League2 {
 	private String warriorsT = "Golden State Warriors";
 	private String lakersT = "Los Angeles Lakers";
 	private String freeAgentsT = "Free Agents";
-	//**test code **
-	
 	public String nbaTeam = "";
+
 
 	
 	public League2() throws FileNotFoundException {
 		
+		//sizeFA = 6;	
 		createLeague();
+		
 	}
 	
 	
@@ -179,6 +179,13 @@ public class League2 {
 						System.out.println("\t" + Lakers[i].getPlayer());
 					System.out.println("***************************************\n");
 					break;
+					
+				case "Free Agents":
+					System.out.println("\n-- The " + nbaTeam + " available --");
+					for(int i= 0; i<FreeAgents.length; i++) 
+						System.out.println("\t" + FreeAgents[i].getPlayer());
+					System.out.println("__________________________________\n");
+					break;
 				
 				default:
 					break;	
@@ -208,6 +215,12 @@ public class League2 {
 		System.out.print("\nPlease enter the player you want released(add code for error: player not on team): ");
 		String releasedPlayer = scan.nextLine();
 		
+		//checks if player exists in the league
+		if(!playerList2.contains(releasedPlayer)) {
+			System.out.println("[Error] Please enter a correct name.");
+			releasePlayer();
+		}
+		
 		List<Player> list;
 		List<String> list2 = null;
 		
@@ -215,10 +228,13 @@ public class League2 {
 		 
 			case "Boston Celtics": 
 				
+				
 				list = Arrays.asList(Celtics);
 				for(Player temp : list) {
 					if(temp.getPlayer().equals(releasedPlayer)) 
 						Celtics = removeTheElement(Celtics, releasedPlayer);
+					
+						//FreeAgent[sizeFA] = Celtics[i];
 				}
 				
 				//remove player from list
@@ -261,16 +277,6 @@ public class League2 {
 				}
 				break;
 				
-			//technically FA shouldnt be allowed to remove players
-			case "Free Agents":
-				list = Arrays.asList(FreeAgents);
-				
-				for(Player temp : list) {
-					if(temp.getPlayer().equals(releasedPlayer)) 
-						FreeAgents = removeTheElement(FreeAgents, releasedPlayer);
-				}
-				break;
-				
 			//this is wrong, good logic but apply to ERROR when asking for player
 			default:
 				System.out.println("[Error] Please enter a correct name.");
@@ -279,9 +285,6 @@ public class League2 {
 		}//ends switch
 	}
 	
-	
-	//this code so far works with an int index,
-	// it needs to be a String that gets passed into the method
 	public Player[] removeTheElement(Player[] team, String name) {
 		
 		Player[] tempArray = new Player[team.length-1];
@@ -292,12 +295,12 @@ public class League2 {
 		
 		for(int i=0, k=0; i < team.length; i++) {
 			
-			if(team[i].getPlayer().equals(name))
+			if(team[i].getPlayer().equals(name)) 
 				continue;	//statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
 			
 			tempArray[k++] = team[i];
 		}
-
+			
 		team = tempArray;
 		return team;
 	}
