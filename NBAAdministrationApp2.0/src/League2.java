@@ -212,12 +212,14 @@ public class League2 {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.print("\nPlease enter the player you want released(add code for error: player not on team): ");
+		System.out.print("\nPlease enter the player you want released: ");
 		String releasedPlayer = scan.nextLine();
 		
 		//checks if player exists in the league
 		if(!playerList2.contains(releasedPlayer)) {
-			System.out.println("[Error] Please enter a correct name.");
+			System.out.println("[Error] Player does not exist in the League!");
+			
+			//by doing this, releasePlayer will execute twice, is this an issue or is this fine?
 			releasePlayer();
 		}
 		
@@ -228,13 +230,32 @@ public class League2 {
 		 
 			case "Boston Celtics": 
 				
-				
+				boolean foundd = false;
 				list = Arrays.asList(Celtics);
-				for(Player temp : list) {
-					if(temp.getPlayer().equals(releasedPlayer)) 
-						Celtics = removeTheElement(Celtics, releasedPlayer);
-					
-						//FreeAgent[sizeFA] = Celtics[i];
+				
+				int p = 0;
+				
+				// TEST CODE
+				//This check needs to iterator through the entire team and check if the player exists,
+				for(Player temp1 : list) {
+					if(temp1.getPlayer().equals(releasedPlayer)) {
+						foundd = true;
+						System.out.println("TEST found=" + foundd);
+					}
+					p++;
+					System.out.println(p);
+						
+				}
+				// TEST CODE
+				
+				if(foundd == true) {
+					for(Player temp : list) {
+						if(temp.getPlayer().equals(releasedPlayer)) 
+							Celtics = removeTheElement(Celtics, releasedPlayer);
+							//FreeAgent[sizeFA] = Celtics[i];
+					}
+				} else {
+					System.out.println("[Error] The player entered does not belong to your team.\nPlease enter a player to release that belongs to your team.\n");
 				}
 				
 				//remove player from list
