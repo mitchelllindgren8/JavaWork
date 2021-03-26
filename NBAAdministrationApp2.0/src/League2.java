@@ -211,16 +211,20 @@ public class League2 {
 	public void releasePlayer() {
 		
 		Scanner scan = new Scanner(System.in);
+		String releasedPlayer = "";
 		
-		System.out.print("\nPlease enter the player you want released: ");
-		String releasedPlayer = scan.nextLine();
 		
-		//checks if player exists in the league
-		if(!playerList2.contains(releasedPlayer)) {
-			System.out.println("[Error] Player does not exist in the League!");
+		
+		while((!playerList2.contains(releasedPlayer))) {
 			
-			//by doing this, releasePlayer will execute twice, is this an issue or is this fine?
-			releasePlayer();
+			System.out.print("\nPlease enter the player you want released: ");
+			releasedPlayer = scan.nextLine();
+			
+			//checks if player exists in the league
+			if(!playerList2.contains(releasedPlayer)) 
+				System.out.println("[Error] Player does not exist in the League!");
+			else
+				break;
 		}
 		
 		List<Player> list;
