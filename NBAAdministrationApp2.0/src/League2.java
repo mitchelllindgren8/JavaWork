@@ -229,30 +229,21 @@ public class League2 {
 		
 		List<Player> list;
 		List<String> list2 = null;
+		boolean found = false;
 		
 		switch(nbaTeam) {
 		 
 			case "Boston Celtics": 
 				
-				boolean foundd = false;
 				list = Arrays.asList(Celtics);
-				
-				int p = 0;
-				
-				// TEST CODE
+
 				//This check needs to iterator through the entire team and check if the player exists,
 				for(Player temp1 : list) {
-					if(temp1.getPlayer().equals(releasedPlayer)) {
-						foundd = true;
-						System.out.println("TEST found=" + foundd);
-					}
-					p++;
-					System.out.println(p);
-						
+					if(temp1.getPlayer().equals(releasedPlayer)) 
+						found = true;		
 				}
-				// TEST CODE
 				
-				if(foundd == true) {
+				if(found == true) {
 					for(Player temp : list) {
 						if(temp.getPlayer().equals(releasedPlayer)) 
 							Celtics = removeTheElement(Celtics, releasedPlayer);
