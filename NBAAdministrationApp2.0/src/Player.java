@@ -36,16 +36,11 @@ public class Player extends Person {
 	//set players weight
 	
 	//When was this added???? 
-	/*
 	private void Player(String fullName, String team) {
 		// TODO Auto-generated method stub
 		
 	}
-	*/
-
-
-
-
+	
 	public void print() {
 		
 		System.out.print("Player details: \n\t"+" #" +jerseyNum + " ");
