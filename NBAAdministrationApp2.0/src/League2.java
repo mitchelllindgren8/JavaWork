@@ -12,8 +12,7 @@ public class League2 {
 	
 	public List<String> playerList2 = new ArrayList();	//list of list of player
 	
-	public static List<Player> BullsList = new ArrayList<Player>();
-	public List<String> proteamNames = new ArrayList();	//list of team names in League
+	//public static List<Player> BullsList = new ArrayList<Player>();
 	
 	public Player[] PLAYERS = new Player[31];	//currently there are 31 players on the file, find a way to not HARDCODE
 	protected Player[] Celtics = new Player[5];
@@ -21,9 +20,9 @@ public class League2 {
 	protected Player[] Nets = new Player[5];
 	protected Player[] Bulls = new Player[5];
 	protected Player[] Warriors = new Player[5];
-	protected Player[] FreeAgents = new Player[6];
+	protected Player[] FreeAgents = new Player[5];
 	
-	public String[] proteamNames2 = new String[6];
+	public String[] proteamNames = new String[6];
 	//these are the full professional team names
 	private String celticsT= "Boston Celtics";
 	private String netsT = "Brooklyn Nets";
@@ -33,13 +32,12 @@ public class League2 {
 	private String freeAgentsT = "Free Agents";
 	public String nbaTeam = "";
 
-
+	private String errorMessageRel = "[Error] The player entered does not belong to your team.\nPlease enter a player to release that belongs to your team.\n";
+	private String errorMessageSign = "[Error] The player entered does not belong to your team.\nPlease enter a player to sign that belongs to your team.\n";
 	
 	public League2() throws FileNotFoundException {
-		
-		//sizeFA = 6;	
+			
 		createLeague();
-		
 	}
 	
 	
@@ -65,37 +63,31 @@ public class League2 {
 			//add players to team arrays accordingly  
 			if(team.contains("Bulls")){
 				Bulls[itrB] = new Player(playerName, team, jerNo);
-				//System.out.println("Player: " + Bulls[itrB].getPlayer() + ", "+ Bulls[itrB].getTeam());
 				itrB++;
 				
 			} else if(team.contains("Celtics")) {
 				Celtics[itrC] = new Player(playerName, team, jerNo);
-				//System.out.println("Player: " + Celtics[itrC].getPlayer() + ", "+ Celtics[itrC].getTeam());
 				itrC++;
 				
 			} else if(team.contains("FreeAgents")) {
 				FreeAgents[itrFA] = new Player(playerName, team, jerNo);
-				//System.out.println("Player: " + FreeAgents[itrFA].getPlayer() + ", "+ FreeAgents[itrFA].getTeam());
 				itrFA++;
 				
 			} else if(team.contains("Lakers")) {
 				Lakers[itrL] = new Player(playerName, team, jerNo);
-				//System.out.println("Player: " + Lakers[itrL].getPlayer() + ", "+ Lakers[itrL].getTeam());
 				itrL++;
 				
 			} else if(team.contains("Nets")) {
 				Nets[itrN] = new Player(playerName, team, jerNo);
-				//System.out.println("Player: " + Nets[itrN].getPlayer() + ", "+ Nets[itrN].getTeam());
 				itrN++;
 				
 			} else {	//"Warriors"
 				Warriors[itrW] = new Player(playerName, team, jerNo);
-				//System.out.println("Player: " + Warriors[itrW].getPlayer() + ", "+ Warriors[itrW].getTeam());
 				itrW++;
 			}
 			
 			i++;	//this incremented the player list
-			playerList2.add(playerName);	//adds player to a complete list of players in the league
+			playerList2.add(playerName);
 		}//ends the while loop 
 	}
 	
@@ -108,12 +100,11 @@ public class League2 {
 		populateLeague(); 
 
 		//Once the while loop ends, found must be true, add an IF statement if wanted
-
-		while(!Arrays.asList(proteamNames2).contains(teamName)) {
+		while(!Arrays.asList(proteamNames).contains(teamName)) {
 			System.out.print("[Error] Please enter the correct team name: ");
 			teamName = in.nextLine();
-
 		}
+		
 		nbaTeam = teamName;	//this acts as a "setTeam()"
 		found = true;
 		
@@ -130,18 +121,18 @@ public class League2 {
 	// ***** find a way to reset the list that way all the teams arent continuously added to list
 	public void populateLeague() {
 		
-		proteamNames2[0] = celticsT;
-		proteamNames2[1] = netsT;
-		proteamNames2[2] = bullsT;
-		proteamNames2[3] = warriorsT;
-		proteamNames2[4] = lakersT;
-		proteamNames2[5] = freeAgentsT;
-	
+		proteamNames[0] = celticsT;
+		proteamNames[1] = netsT;
+		proteamNames[2] = bullsT;
+		proteamNames[3] = warriorsT;
+		proteamNames[4] = lakersT;
+		proteamNames[5] = freeAgentsT;
 	}
 	
 	//view a team
 		public void viewTeam() {
 			
+			//Delete later??
 			Scanner scann = new Scanner(System.in);
 			
 			switch(nbaTeam) {
@@ -180,9 +171,10 @@ public class League2 {
 					System.out.println("***************************************\n");
 					break;
 					
+				//You can never view the FreeAgents team, simply used for printing(KEEP)
 				case "Free Agents":
 					System.out.println("\n-- The " + nbaTeam + " available --");
-					for(int i= 0; i<FreeAgents.length; i++) 
+					for(int i= 0; i<FreeAgents.length; i++)
 						System.out.println("\t" + FreeAgents[i].getPlayer());
 					System.out.println("__________________________________\n");
 					break;
@@ -194,26 +186,102 @@ public class League2 {
 		
 	//view a player
 	public void viewPlayer() {
-		
 		System.out.println("A Player to view code(will be added later).....\n");
-
 	}
 
 		
 	//add a player
-	public void signPlayer() throws FileNotFoundException {
+	public void signPlayer() {
 		
-		System.out.println("\n*** No code yet***");
+		Scanner scan = new Scanner(System.in);
+		String releasedPlayer = "";
+		
+		while((!playerList2.contains(releasedPlayer))) {
+			
+			System.out.print("\nPlease enter the player you want signed: ");
+			releasedPlayer = scan.nextLine();
+			
+			//checks if player exists in the league
+			if(!playerList2.contains(releasedPlayer)) 
+				System.out.println("[Error] Player does not exist in the League!");
+			else
+				break;
+		}
+		
+		List<Player> list;
+		boolean found = false;
+		
+		switch(nbaTeam) {
+		 
+			case "Boston Celtics": 
+				
+				if(!(Celtics.length < 5)){
+					System.out.println("[Error] The " + nbaTeam + " already has a full roster of 5 players.\n");
+					break;
+				}
+				
+				list = Arrays.asList(FreeAgents);
 
+				//This check needs to iterator through the entire team and check if the player exists,
+				for(Player temp1 : list) {
+					if(temp1.getPlayer().equals(releasedPlayer)) 
+						found = true;		
+				}
+				
+				if(found == true) 
+					Celtics = addTheElement(Celtics, releasedPlayer);
+				else 
+					System.out.println(errorMessageSign);
+				
+				break;
+			
+				//I dont think this will ever run because of prior checks 
+			default:
+				System.out.println("[Error] No NBA team was chosen.");
+				break;
+		}
 	}
+	
+	// TEST CODE
+	//	THIS CODE NEEDS TO BE ALTERED TO ADD A PLAYER, CURRENT CODE IS REMOVETHEELEMENT 3/26
+	public Player[] addTheElement(Player[] team, String name) {
+		
+		Player[] tempArray = new Player[team.length+1];
+		
+		//copy code
+		if(team == null) 
+			return team;
+		
+		System.out.println("WE IN ADD ELEMENT\n");
+		
+		/*
+		for(int i=0, k=0; i < team.length; i++) {
+			
+			if(team[i].getPlayer().equals(name)) 
+				continue;	//statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+			
+			tempArray[k++] = team[i];
+		}
+		
+		
+		
+		for(int i=0, k=0; i < team.length; i++) {
+			team[team.length-1].equals(team[k].getPlayer());
+		}
+		
+			
+		team = tempArray;
+		*/
+		
+		return team;
+	}
+	// TEST CODE
 	
 	//release a player
 	public void releasePlayer() {
 		
 		Scanner scan = new Scanner(System.in);
 		String releasedPlayer = "";
-		
-		
 		
 		while((!playerList2.contains(releasedPlayer))) {
 			
@@ -228,7 +296,6 @@ public class League2 {
 		}
 		
 		List<Player> list;
-		List<String> list2 = null;
 		boolean found = false;
 		
 		switch(nbaTeam) {
@@ -244,59 +311,75 @@ public class League2 {
 				}
 				
 				if(found == true) {
-					for(Player temp : list) {
-						if(temp.getPlayer().equals(releasedPlayer)) 
-							Celtics = removeTheElement(Celtics, releasedPlayer);
-							//FreeAgent[sizeFA] = Celtics[i];
-					}
+					Celtics = removeTheElement(Celtics, releasedPlayer);
 				} else {
-					System.out.println("[Error] The player entered does not belong to your team.\nPlease enter a player to release that belongs to your team.\n");
+					System.out.println(errorMessageRel);
 				}
-				
-				//remove player from list
-				//add to FA list, make FA list bigger to hold more players
 				break;
 				
 			case "Brooklyn Nets":
 				
 				list = Arrays.asList(Nets);
-				for(Player temp : list) {
-					if(temp.getPlayer().equals(releasedPlayer)) 
-						Nets = removeTheElement(Nets, releasedPlayer);
+				for(Player temp1 : list) {
+					if(temp1.getPlayer().equals(releasedPlayer)) 
+						found = true;		
+				}
+				
+				if(found == true) {
+					Nets = removeTheElement(Nets, releasedPlayer);
+				} else {
+					System.out.println(errorMessageRel);
 				}
 				break;
 				
 			case "Chicago Bulls":
 				
 				list = Arrays.asList(Bulls);
-				for(Player temp : list) {
-					if(temp.getPlayer().equals(releasedPlayer)) 
-						Bulls = removeTheElement(Bulls, releasedPlayer);
+				for(Player temp1 : list) {
+					if(temp1.getPlayer().equals(releasedPlayer)) 
+						found = true;		
+				}
+				
+				if(found == true) {
+					Bulls = removeTheElement(Bulls, releasedPlayer);
+				} else {
+					System.out.println(errorMessageRel);
 				}
 				break;
 				
 			case "Los Angeles Lakers":
 				
 				list = Arrays.asList(Lakers);
-				for(Player temp : list) {
-					if(temp.getPlayer().equals(releasedPlayer)) 
-						Lakers = removeTheElement(Lakers, releasedPlayer);
+				for(Player temp1 : list) {
+					if(temp1.getPlayer().equals(releasedPlayer)) 
+						found = true;		
+				}
+				
+				if(found == true) {
+					Lakers = removeTheElement(Lakers, releasedPlayer);
+				} else {
+					System.out.println(errorMessageRel);
 				}
 				break;
 				
 			case "Golden State Warriors":
 				
 				list = Arrays.asList(Warriors);
-				for(Player temp : list) {
-					if(temp.getPlayer().equals(releasedPlayer)) 
-						Warriors = removeTheElement(Warriors, releasedPlayer);
+				for(Player temp1 : list) {
+					if(temp1.getPlayer().equals(releasedPlayer)) 
+						found = true;		
+				}
+				
+				if(found == true) {
+					Warriors = removeTheElement(Warriors, releasedPlayer);
+				} else {
+					System.out.println(errorMessageRel);
 				}
 				break;
 				
-			//this is wrong, good logic but apply to ERROR when asking for player
+			//This should never run unless nbaTeam is overwritten
 			default:
-				System.out.println("[Error] Please enter a correct name.");
-				releasePlayer();
+				System.out.println("[Error] No NBA team was chosen.");
 				break;
 		}//ends switch
 	}
@@ -305,14 +388,29 @@ public class League2 {
 		
 		Player[] tempArray = new Player[team.length-1];
 		
-		//copy code
 		if(team == null) 
 			return team;
 		
 		for(int i=0, k=0; i < team.length; i++) {
 			
-			if(team[i].getPlayer().equals(name)) 
+			if(team[i].getPlayer().equals(name))  {
+				
+				//any released player is immediately added to the Free Agency list
+				Player[] tempFreeAgents = new Player[FreeAgents.length+1];
+				
+					for(int m=0; i < tempFreeAgents.length; m++) {
+						
+						//sets last FAroster spot to be the released player
+						if( m == tempFreeAgents.length-1){
+							tempFreeAgents[tempFreeAgents.length-1] = team[i];	
+							break;
+						}
+						tempFreeAgents[m] = FreeAgents[m];
+					}
+				
+				FreeAgents = tempFreeAgents;
 				continue;	//statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+			}//ends if
 			
 			tempArray[k++] = team[i];
 		}
@@ -332,8 +430,8 @@ public class League2 {
 		
 		System.out.println("\n~~~ Welcome to the " + year.format(currentDate) + " NBA League! ~~~");
 		
-		for(int i=0; i<proteamNames2.length; i++) {
-			nbaTeam = proteamNames2[i];
+		for(int i=0; i<proteamNames.length; i++) {
+			nbaTeam = proteamNames[i];
 			viewTeam();
 		}	
 		

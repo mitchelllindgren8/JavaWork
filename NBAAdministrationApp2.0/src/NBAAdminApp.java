@@ -15,7 +15,7 @@ public class NBAAdminApp {
 		boolean found = false;
 	
 		//ask if player or owner
-		System.out.println("VERSION 2.1\n");
+		System.out.println("VERSION 2.2\n");
 		System.out.print("*** Welcome NBA Owner ***\n(Please choose your respective basketball team)"
 				+ "\n\tBoston Celtics\n\tBrooklyn Nets\n\tChicago Bulls\n\tGolden State Warriors\n\tLos Angeles Lakers\n>>>");
 		

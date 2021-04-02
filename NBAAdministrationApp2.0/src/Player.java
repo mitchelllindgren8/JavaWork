@@ -35,11 +35,13 @@ public class Player extends Person {
 	//set players height
 	//set players weight
 	
-	
+	//When was this added???? 
+	/*
 	private void Player(String fullName, String team) {
 		// TODO Auto-generated method stub
 		
 	}
+	*/
 
 
 

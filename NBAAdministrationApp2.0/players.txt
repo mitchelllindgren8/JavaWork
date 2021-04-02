@@ -3,7 +3,6 @@ Bill Russell#11#Celtics
 Draymond Green#23#Warriors
 Dennis Rodman#99#Bulls
 Derrick Rose#1#Bulls
-Extra Guy#69#FreeAgents
 General Patton#3#FreeAgents
 James Harden#13#Nets
 Jason Kidd#9#Nets
@@ -27,5 +26,5 @@ Steve Kerr#25#Bulls
 Stephen Curry#30#Warriors
 Stone-Cold-Steve Austin#316#FreeAgents
 Scottie Pippen#33#Bulls
-The Truth#10#FreeAgents
+The Truth#69#FreeAgents
 Wilt Chamberlain#13#Warriors
