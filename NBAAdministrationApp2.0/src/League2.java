@@ -208,20 +208,18 @@ public class League2 {
 				break;
 		}
 		
-		List<Player> list;
+		List<Player> list = Arrays.asList(FreeAgents);
 		boolean found = false;
 		
-		switch(nbaTeam) {
-		 
+			switch(nbaTeam) {
+			 
 			case "Boston Celtics": 
 				
 				if(!(Celtics.length < 5)){
 					System.out.println("[Error] The " + nbaTeam + " already has a full roster of 5 players.\n");
 					break;
 				}
-				
-				list = Arrays.asList(FreeAgents);
-
+	
 				//This checks if player exists in the FreeAgency list
 				for(Player temp1 : list) {
 					if(temp1.getPlayer().equals(signedPlayer)) 
@@ -229,20 +227,97 @@ public class League2 {
 				}
 				
 				if(found == true) 
-					Celtics = addTheElement2(Celtics, signedPlayer);
+					Celtics = addTheElement(Celtics, signedPlayer);
 				else 
 					System.out.println(errorMessageSign);
 				
 				break;
-			
-				//I dont think this will ever run because of prior checks 
+				
+			case "Brooklyn Nets":
+				
+				if(!(Nets.length < 5)){
+					System.out.println("[Error] The " + nbaTeam + " already has a full roster of 5 players.\n");
+					break;
+				}
+				
+				for(Player temp1 : list) {
+					if(temp1.getPlayer().equals(signedPlayer)) 
+						found = true;		
+				}
+				
+				if(found == true) {
+					Nets = addTheElement(Nets, signedPlayer);
+				} else {
+					System.out.println(errorMessageSign);
+				}
+				break;
+				
+			case "Chicago Bulls":
+				
+				if(!(Bulls.length < 5)){
+					System.out.println("[Error] The " + nbaTeam + " already has a full roster of 5 players.\n");
+					break;
+				}
+				
+				for(Player temp1 : list) {
+					if(temp1.getPlayer().equals(signedPlayer)) 
+						found = true;		
+				}
+				
+				if(found == true) {
+					Bulls = addTheElement(Bulls, signedPlayer);
+				} else {
+					System.out.println(errorMessageSign);
+				}
+				break;
+				
+			case "Los Angeles Lakers":
+				
+				if(!(Lakers.length < 5)){
+					System.out.println("[Error] The " + nbaTeam + " already has a full roster of 5 players.\n");
+					break;
+				}
+				
+				for(Player temp1 : list) {
+					if(temp1.getPlayer().equals(signedPlayer)) 
+						found = true;		
+				}
+				
+				if(found == true) {
+					Lakers = addTheElement(Lakers, signedPlayer);
+				} else {
+					System.out.println(errorMessageSign);
+				}
+				break;
+				
+			case "Golden State Warriors":
+				
+				if(!(Warriors.length < 5)){
+					System.out.println("[Error] The " + nbaTeam + " already has a full roster of 5 players.\n");
+					break;
+				}
+				
+				for(Player temp1 : list) {
+					if(temp1.getPlayer().equals(signedPlayer)) 
+						found = true;		
+				}
+				
+				if(found == true) {
+					Warriors = addTheElement(Warriors, signedPlayer);
+				} else {
+					System.out.println(errorMessageSign);
+				}
+				break;
+				
+			//This should never run unless nbaTeam is overwritten
 			default:
 				System.out.println("[Error] No NBA team was chosen.");
 				break;
-		}
+		}//ends switch
 	}
-	
-	public Player[] addTheElement2(Player[] team, String name) {
+		
+		
+	public Player[] addTheElement(Player[] team, String name) {
 		
 		Player[] tempFreeAgents = new Player[FreeAgents.length-1];
 		
