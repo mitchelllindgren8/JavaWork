@@ -33,7 +33,7 @@ public class League2 {
 	public String nbaTeam = "";
 
 	private String errorMessageRel = "[Error] The player entered does not belong to your team.\nPlease enter a player to release that belongs to your team.\n";
-	private String errorMessageSign = "[Error] The player entered does not belong to your team.\nPlease enter a player to sign that belongs to your team.\n";
+	private String errorMessageSign = "[Error] The player entered belongs to another team.\nPlease enter a player to sign that is a Free Agent.\n";
 	
 	public League2() throws FileNotFoundException {
 			
@@ -137,35 +137,35 @@ public class League2 {
 			
 			switch(nbaTeam) {
 				case "Boston Celtics": 
-					System.out.println("\n** The " + nbaTeam + " starting 5 **");
+					System.out.println("\n** The " + nbaTeam + " starting " + Celtics.length +  "**");
 					for(int i= 0; i<Celtics.length; i++) 
 						System.out.println("\t" + Celtics[i].getPlayer());
 					System.out.println("***************************************\n");
 					break;
 					
 				case "Brooklyn Nets":
-					System.out.println("\n** The " + nbaTeam + " starting 5 **");
+					System.out.println("\n** The " + nbaTeam + " starting " + Nets.length +  "**");
 					for(int i= 0; i<Nets.length; i++) 
 						System.out.println("\t" + Nets[i].getPlayer());
 					System.out.println("***************************************\n");
 					break;
 					
 				case "Chicago Bulls":
-					System.out.println("\n** The " + nbaTeam + " starting 5 **");
+					System.out.println("\n** The " + nbaTeam + " starting " + Bulls.length +  "**");
 					for(int i= 0; i<Bulls.length; i++) 
 						System.out.println("\t" + Bulls[i].getPlayer());
 					System.out.println("***************************************\n");
 					break;
 					
 				case "Golden State Warriors":
-					System.out.println("\n** The " + nbaTeam + " starting 5 **");
+					System.out.println("\n** The " + nbaTeam + " starting " + Warriors.length +  "**");
 					for(int i= 0; i<Warriors.length; i++) 
 						System.out.println("\t" + Warriors[i].getPlayer());
 					System.out.println("***************************************\n");
 					break;
 					
 				case "Los Angeles Lakers":
-					System.out.println("\n** The " + nbaTeam + " starting 5 **");
+					System.out.println("\n** The " + nbaTeam + " starting " + Lakers.length +  "**");
 					for(int i= 0; i<Lakers.length; i++) 
 						System.out.println("\t" + Lakers[i].getPlayer());
 					System.out.println("***************************************\n");
@@ -194,15 +194,15 @@ public class League2 {
 	public void signPlayer() {
 		
 		Scanner scan = new Scanner(System.in);
-		String releasedPlayer = "";
+		String signedPlayer = "";
 		
-		while((!playerList2.contains(releasedPlayer))) {
+		while((!playerList2.contains(signedPlayer))) {
 			
 			System.out.print("\nPlease enter the player you want signed: ");
-			releasedPlayer = scan.nextLine();
+			signedPlayer = scan.nextLine();
 			
 			//checks if player exists in the league
-			if(!playerList2.contains(releasedPlayer)) 
+			if(!playerList2.contains(signedPlayer)) 
 				System.out.println("[Error] Player does not exist in the League!");
 			else
 				break;
@@ -222,14 +222,14 @@ public class League2 {
 				
 				list = Arrays.asList(FreeAgents);
 
-				//This check needs to iterator through the entire team and check if the player exists,
+				//This checks if player exists in the FreeAgency list
 				for(Player temp1 : list) {
-					if(temp1.getPlayer().equals(releasedPlayer)) 
+					if(temp1.getPlayer().equals(signedPlayer)) 
 						found = true;		
 				}
 				
 				if(found == true) 
-					Celtics = addTheElement(Celtics, releasedPlayer);
+					Celtics = addTheElement2(Celtics, signedPlayer);
 				else 
 					System.out.println(errorMessageSign);
 				
@@ -242,40 +242,40 @@ public class League2 {
 		}
 	}
 	
-	// TEST CODE
-	//	THIS CODE NEEDS TO BE ALTERED TO ADD A PLAYER, CURRENT CODE IS REMOVETHEELEMENT 3/26
-	public Player[] addTheElement(Player[] team, String name) {
+	public Player[] addTheElement2(Player[] team, String name) {
 		
-		Player[] tempArray = new Player[team.length+1];
+		Player[] tempFreeAgents = new Player[FreeAgents.length-1];
 		
-		//copy code
 		if(team == null) 
 			return team;
 		
-		System.out.println("WE IN ADD ELEMENT\n");
-		
-		/*
-		for(int i=0, k=0; i < team.length; i++) {
+		for(int i=0, k=0; i < FreeAgents.length; i++) {
 			
-			if(team[i].getPlayer().equals(name)) 
+			if(FreeAgents[i].getPlayer().equals(name))  {
+				
+				//any signed player is immediately removed from the Free Agency list
+				Player[] tempTeam = new Player[team.length+1];
+				
+					for(int m=0; i < tempTeam.length; m++) {
+						
+						//sets last tempTeam roster spot to be the released player
+						if( m == tempTeam.length-1){
+							tempTeam[tempTeam.length-1] = FreeAgents[i];	
+							break;
+						}
+						tempTeam[m] = team[m];
+					}
+				
+				team = tempTeam;
 				continue;	//statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+			}//ends if
 			
-			tempArray[k++] = team[i];
+			tempFreeAgents[k++] = FreeAgents[i];
 		}
-		
-		
-		
-		for(int i=0, k=0; i < team.length; i++) {
-			team[team.length-1].equals(team[k].getPlayer());
-		}
-		
 			
-		team = tempArray;
-		*/
-		
+		FreeAgents = tempFreeAgents;
 		return team;
 	}
-	// TEST CODE
 	
 	//release a player
 	public void releasePlayer() {
@@ -386,7 +386,7 @@ public class League2 {
 	
 	public Player[] removeTheElement(Player[] team, String name) {
 		
-		Player[] tempArray = new Player[team.length-1];
+		Player[] tempTeam = new Player[team.length-1];
 		
 		if(team == null) 
 			return team;
@@ -412,10 +412,10 @@ public class League2 {
 				continue;	//statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
 			}//ends if
 			
-			tempArray[k++] = team[i];
+			tempTeam[k++] = team[i];
 		}
 			
-		team = tempArray;
+		team = tempTeam;
 		return team;
 	}
 	
